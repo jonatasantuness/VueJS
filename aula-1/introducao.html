@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VueJS - Guia Completo</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>{{ mensagem }}</p>
+    <p>Meu nome é: {{ nome }}</p>
+    <!-- diretiva do Vue para ouvir evento nativos como 'click' por exemplo -->
+    <input v-on:input="mudarNome">
+  </div>
+
+  <script>
+    /* Ao inserir o script do Vue, o objeto Vue é disponibilizado e pode ser instanciado */
+    new Vue({
+      // seletor do elemento que será manipulado
+      el: '#app',
+      // objeto com fonte de dados para esta instância
+      data: {
+        mensagem: 'Olá Vue.js!',
+        nome: ''
+      },
+      methods: {
+        mudarNome: function (event) {
+          /* A intância do Vue cria um tipo de proxy, então o 'this' aqui representa a própria instância
+          e ela possui acessos aos métodos criados */
+          console.log('this', this);
+          this.nome = event.target.value;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
