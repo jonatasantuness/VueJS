@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Passando seus próprios argumentos junto com o evento</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Referência da API Event: https://developer.mozilla.org/en-US/docs/Web/API/Event -->
+
+  <div id="app">
+    <!-- $event: Quando trabalhamos com eventos dentro do template no Vue,
+    o event é colocado numa 'variável' chamada '$event', então podemos passar como
+    parâmetros os nossos próprios argumentos e o objeto event. -->
+    <input v-on:blur="exibirNome('Meu nome é: ', $event)">
+    <p>{{ nome }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nome: ''
+      },
+      methods: {
+        // na primeira posição acessamos a string que veio do input e na segunda posição o evento em si
+        exibirNome: function (texto, event) {
+          console.log('texto:\n', texto);
+          console.log('value do event:\n', event.target.value);
+          this.nome = texto + event.target.value;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

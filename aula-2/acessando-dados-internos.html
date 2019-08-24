@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Acessando dados da instância Vue internamente</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>Curso: {{ curso }} | Instrutor: {{ nomeDoInstrutor() }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'VueJS',
+        instrutor: 'Plinio Naves'
+      },
+      methods: {
+        nomeDoInstrutor: function () {
+          /* No Javascript o 'this' aqui não acessaria diretamente a propriedade 'data',
+          porém internalmente o Vue faz um proxy com todas as proprieades e
+          tornam elas acessíveis no nível raiz da instância */
+          return this.instrutor;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

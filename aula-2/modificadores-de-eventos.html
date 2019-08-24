@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Usando modificadores de eventos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Quando trabalhamos com manipulação de eventos, o Vue nos oferece modificadores que alteram o comportamento padrão. -->
+
+  <!-- Referência de modificadores de evento: https://br.vuejs.org/v2/guide/events.html#Modificadores-de-Evento -->
+  <!-- Referência da diretiva v-on: https://br.vuejs.org/v2/api/#v-on -->
+
+  <div id="app">
+    <p v-on:click="onClick('p', $event)">
+      Clique em mim
+      <!-- Por padrão, quando temos elementos 'aninhados', o evento é propagado pelo DOM, ou seja, o evento de clique do botão será propagado para o evento de clique do parágrafo e exibirá o console para ambos, para cancelar este comportamento é necessário usar o método do event 'event.stopPropagation' -->
+
+      <!-- Dessa forma precisariamos do event.stopPropagation(); no método responsável -->
+      <!-- <button v-on:click="onClick('button', $event)">Clique</button> -->
+
+      <!-- Utilizando o método do Vue '.stop', já estamos indicando ao evento que o mesmo não deve se propagar -->
+      <button v-on:click.stop="onClick('button', $event)">Clique</button>
+    </p>
+
+    <!-- Existe uma forma abreviada chamar o 'v-on', utilizando '@' -->
+    <form>
+      <input type="text">
+      <!-- Para utilizarmos o event.preventDefault() podemos utilizar o modificador 'prevent' do Vue -->
+      <button type="submit" @click="onSubmit">Enviar sem modificador</button>
+      <button type="submit" @click.prevent="onSubmit">Enviar com modificador</button>
+      <div id="resultado"></div>
+    </form>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        onClick: function (alvo, event) {
+          // event.stopPropagation();
+          console.log('tipo do evento: ' + event.type + ' e ' + 'Elemento alvo: ', alvo);
+        },
+        onSubmit: function (event) {
+          // event.preventDefault();
+          var resultado = document.getElementById('resultado');
+          resultado.innerHTML = 'Form submetido! com prevent a página não ira recarregar =D';
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

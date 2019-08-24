@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Manipulando eventos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- v-on: Diretiva para manipular eventos, ao contrário da 'v-bind', o v-on pega algo do template
+  (como eventos disparados pelo usuário por exemplo) e leva para instância do Vue. -->
+
+  <!-- Referência de eventos do DOM: https://developer.mozilla.org/en-US/docs/Web/Events -->
+
+  <div id="app">
+    <!-- com o v-on, podemos trabalhar com qualquer evento nativo que o DOM oferece -->
+    <button v-on:click="incrementar">Clique</button>
+    <p>Botão clicado {{ cliques }} vezes</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        cliques: 0
+      },
+      methods: {
+        incrementar: function () {
+          this.cliques++;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

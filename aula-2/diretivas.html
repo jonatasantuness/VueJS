@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Diretivas</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Diretivas: São atributos especiais préfixados com um 'v-' seguido do nome da diretiva,
+  sua função é aplicar efeitos colatorias no DOM sempre que a expressão que for passada para ela for alterada.
+  As Diretivas esperam uma expressão Javascript que pode ser uma propriedade do data, um método, parâmetros... -->
+
+  <div id="app">
+    <p>Curso: {{ curso }}</p>
+
+    <!-- v-bind: diretiva que pega valores da instância Vue
+    e faz a ligação de dados para elemento selecionado no template -->
+    <a v-bind:href="docs">VueJS</a>
+
+    <!-- v-text: diretiva para exibir valores no template,
+    tem que ser associado em um elemento no DOM como o 'span' por exemplo -->
+    <p>Instrutor: <span v-text="instrutor"></span></p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'VueJS',
+        docs: 'https://vuejs.org',
+        instrutor: 'Plinio Naves'
+      }
+    });
+  </script>
+
+</body>
+
+</html>

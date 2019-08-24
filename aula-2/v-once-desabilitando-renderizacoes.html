@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Desabilitando novas renderizações com v-once</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- v-once: Essa diretiva faz com que um elemento (e seus filhos)
+  sejam interpolados apenas uma vez e não atualize mais. -->
+
+  <div id="app">
+    <!-- A função getNome() normalmente alteraria o paragráfo com nome completo também,
+    porém com a diretiva v-once esse elemento (e seus filhos) serão considerados elementos estáticos -->
+    <p v-once>Nome completo: {{ nome }}</p>
+    <p>Nome: {{ getNome() }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nome: 'Jonatas Antunes de Souza'
+      },
+      methods: {
+        getNome: function () {
+          this.nome = 'Jonatas';
+          return this.nome;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

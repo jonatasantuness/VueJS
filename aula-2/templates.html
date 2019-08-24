@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Entendendo os templates do Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- A interpolação de string '{{}}' não será exibido no HTML pois internamente
+    o Vue pega este elemento através do seletor e cria um 'cópia' para manipula-lo -->
+  <div id="app">
+    <!-- No Vue podemos acessar os dados diretamente pelo nome da propriedade,
+    não é necessário fazer '{{ this.data.curso}}' por exemplo -->
+    <p>Curso: {{ curso }} | Instrutor: {{ instrutor() }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'VueJS'
+      },
+      methods: {
+        instrutor: function () {
+          // como estamos retornando uma String, isso pode ser exibido no template normalmente
+          return 'Plinio Naves';
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

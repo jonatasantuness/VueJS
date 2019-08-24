@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Binding em atributos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>Curso: {{ curso }}</p>
+    <!-- Além de imprimir valores no DOM utilizando interpolação de String com '{{}}',
+    vamos utilizar o Data Binding (ligação de dados) para manipular atributos -->
+
+    <!-- errado -->
+    <!-- <a href="{{ docs }}"></a> -->
+
+    <!-- certo -->
+    <a v-bind:href="docs">VueJS</a>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'VueJS',
+        docs: 'https://vuejs.org'
+      }
+    });
+  </script>
+
+</body>
+
+</html>
