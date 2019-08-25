@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trabalhando com eventos do teclado e modificadores de tecla</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Referência para modificadores de tecla: https://br.vuejs.org/v2/guide/events.html#Modificadores-de-Teclado -->
+
+  <!-- Referência de configuração de key code: https://br.vuejs.org/v2/api/#keyCodes -->
+
+  <!-- Referência para os nomes das reclas: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values -->
+
+  <div id="app">
+    <input v-on:keyup="onKey" placeholder="Digite qualquer tecla">
+
+    <!-- Podemos utilizar os modificadores de tecla para o Vue monitorar apenas uma tecla específica,
+    por exemplo o enter -->
+    <input v-on:keyup.enter="onKey" placeholder="Digite ENTER">
+
+    <!-- É possível inserir mais de uma tecla -->
+    <input v-on:keyup.enter.esc="onKey" placeholder="Digite ENTER ou ESC">
+
+    <!-- Por default não temos o alias para a tecla 'ArrowUp' disponível, no event.key o nome da tecla é 'ArrowUp', para o VueJS reconhecer automaticamente essa tecla, podemos converte-la para o padrão 'kebab-case' -->
+    <input v-on:keyup.arrow-up="onKey" placeholder="Digite seta para cima">
+
+    <!-- Podemos usar o modificador para capturar um 'Control + V' por exemplo, (o exact é para impedir por exemplo um 'Control + Shift + V') -->
+    <input v-on:keyup.ctrl.v.exact="onPaste" placeholder="Cole algo aqui!">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        onKey: function (event) {
+          console.log('Tecla ' + event.key + ' pressionada!');
+        },
+        onPaste: function (event) {
+          console.log('Conteúdo colado\n', event.target.value);
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>

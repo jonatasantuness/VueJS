@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Two-way data binding com v-model</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- o que é Two Way Data Binding? -->
+
+  <!-- A proposta do Two Way Data Binding é automatizar o trafego de dados do script para o DOM, e vice versa, de tal maneira que o não seja necessário criar handlers no DOM para atualizar o Javascript e vice versa. Assim, quando um valor no DOM mudar, o Javascript responsável por aquele DOM também vai será atualizado com o respectivo valor automaticamente -->
+
+  <!-- basicamente, se o model mudar, altera o view, se o view mudar, altera o model -->
+
+  <div id="app">
+    <!-- Criando um Two Way Data Binding de maneira tradicional -->
+    <input :value="nome" @input="nome = $event.target.value">
+
+    <!-- Criando um Two Way Data Binding com v-model, enxuto porém terá o mesmo resultado -->
+    <input v-model="nome">
+
+    <p>Nome: {{ nome }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nome: 'Jonatas'
+      }
+    });
+  </script>
+
+</body>
+
+</html>

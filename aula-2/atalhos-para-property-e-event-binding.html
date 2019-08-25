@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Atalhos para property e event binding</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Podemos usar atalhos para substituir as diretivas, manipuladores de eventos e data-bindings -->
+
+  <div id="app">
+    <!-- Sem Atalho -->
+    <a v-bind:href="docs">VueJS</a>
+    <br>
+    <button v-on:click="onClick">Clique</button>
+    <!-- Sem Atalho -->
+
+    <br>
+
+    <!-- Com Atalho -->
+    <a :href="docs">VueJS</a>
+    <br>
+    <button @click="onClick">Clique</button>
+    <!-- Com Atalho -->
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        docs: 'https://br.vuejs.org/'
+      },
+      methods: {
+        onClick: function (event) {
+          console.log('Evento ', event.type);
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>

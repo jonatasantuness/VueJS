@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Computed Properties vs Methods</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- As Computed Properties são cacheadas de acordo com suas dependências, ou seja, neste caso, a computed property depende do valor do 'curso' em 'data', porém quando ela computa o dado, ele fica guardado em cachen então a computed property só irá fazer uma nova execução se o dado for alterado, enquanto o método é chamado a cada nova renderização (mesmo quando outras propriedades sem liação com ela for alterada). -->
+
+  <div id="app">
+    <p>Nome original: {{ curso }}</p>
+
+    <p>Nome invertido (computed property): {{ cursoInvertidoComputed }}</p>
+
+    <p>Nome invertido (method): {{ cursoInvertidoMethod() }}</p>
+
+    <input @keyup.enter="alterarNomeDoCurso" placeholder="Digite e pressione enter"><br><br>
+
+    <!-- Repare que ao abrir a página, serão exibidos dois concoles, um da computed property e outro do method, porém ao alterarmos o nome do autor e o componente reenderizar, somente o log do method vai aparecer pois o dado do computed ficou em cache. -->
+    <p>Autor: {{ nomeCompleto ? 'Jonatas antunes de Souza' : 'Jonatas' }}</p>
+
+    <button @click="nomeCompleto = !nomeCompleto">Alterar nome do autor</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'Curso de VueJS',
+        nomeCompleto: false
+      },
+      computed: {
+        cursoInvertidoComputed: function () {
+          console.log('Computed!');
+          return this.curso.split('').reverse().join('');
+        }
+      },
+      methods: {
+        alterarNomeDoCurso: function (event) {
+          this.curso = event.target.value;
+        },
+        cursoInvertidoMethod: function () {
+          console.log('Method!');
+          return this.curso.split('').reverse().join('');
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quando usar Watchers?</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Watchers: as melhores situações onde podemos usa-los, são em funções assincronas ou quando não precisamos retornar um valor. -->
+
+  <div id="app">
+    <p>Nome: {{ nomeCompleto }}</p>
+
+    <button @click="alterarNome">Alterar nome</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nomeCompleto: 'Jonatas Antunes'
+      },
+      methods: {
+        alterarNome: function (event) {
+          this.nomeCompleto = 'Antunes Jonatas';
+        }
+      },
+      watch: {
+        nomeCompleto: function (novoNomeCompleto, antigoNomeCompleto) {
+          /* O setTimeout é uma operação assícrona que cria uma closure com escopo próprio,
+          então o 'this' não irá funcionar aqui, por isso o colocaremos numa variável antes. */
+          var self = this;
+          setTimeout(function () {
+            self.nomeCompleto = 'Nome resetado após o setTimeOut do Watcher!';
+          }, 1000);
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

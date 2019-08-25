@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trabalhando com Computed Properties</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- É possível inserir scrips nas propriedades computadas por data-binding
+  (Porém isso não é considerado boa prática) -->
+
+  <div id="app">
+    <!-- Pratica Ruim -->
+    <p>{{ curso }} => {{ curso.split('').reverse().join('') }}</p>
+
+    <!-- Boa Pratica! -->
+    <!-- A computed property faz um 'getter' para acessar a propriedade no data,
+    então ela não precisa ser invocada com '()' -->
+    <p>{{ curso }} => {{ cursoInvertido }}</p>
+
+    <!-- Se alterarmos o dado 'curso', a computed propertie também atualiza -->
+    <input @keyup.enter="alterarNomeDoCurso" placeholder="Digite e pressione enter">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        curso: 'Curso de VueJS'
+      },
+      /* Ao invés de colocar scripts direto no template,
+      o ideal é cria-los como 'propriedades computadas' do Vue */
+      computed: {
+        // As propriedades computadas funcionam om 'getters' e devem retornar algum valor de fomra sincrona
+        cursoInvertido: function () {
+          return this.curso.split('').reverse().join('');
+        }
+      },
+      methods: {
+        alterarNomeDoCurso: function (event) {
+          this.curso = event.target.value;
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>

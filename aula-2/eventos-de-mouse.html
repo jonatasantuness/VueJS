@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modificando Eventos de Mouse</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <button v-on:click="onClick">Botão esquerdo</button>
+
+    <!-- O modificador 'middle' permite clicar com o botão do meio do mouse -->
+    <button v-on:click.middle="onClick">Botão do meio mouse</button>
+
+    <!-- O modificador 'right' permite clicar com o botão direito do mouse -->
+    <button v-on:click.right="onClick">Botão direito do mouse</button>
+
+    <!-- Para evitar abrir o menu de contexto no botão direito, podemos usar o prevent -->
+    <button v-on:click.right.prevent="onClick">Botão direito do mouse sem menu de contexto</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        onClick: function (event) {
+          /**
+           * Ao clicar no botão esquerdo indicará qual botão do mouse foi pressionado
+           * através do seu número.
+           *
+           * 0: botão da esquerda (padrão)
+           * 1: botão do meio
+           * 3: botão da direita
+           */
+          console.log('Botão ' + event.button + ' Pressionado!');
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>

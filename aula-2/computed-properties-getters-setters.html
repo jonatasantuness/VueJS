@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Computed Properties: getter e setter</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Computed Properties por default são 'getters', ou sejam, somente retornam valores, mas caso precise inserir valores é possível. -->
+
+  <div id="app">
+    <p>Nome: {{ nomeCompleto }}</p>
+
+    <input @keyup.enter="alterarNome" placeholder="Digite um nome e aperte enter" size="30">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        primeiroNome: 'Jonatas',
+        ultimoNome: 'Antunes'
+      },
+      computed: {
+        /* Para alterar dados de um computed, é necessário definir a função get e a função set,
+        assim o method 'alterarNome' conseguirá alterar a computed propertie 'nomeCompleto' */
+        nomeCompleto: {
+          get: function() {
+            return this.primeiroNome + ' ' + this.ultimoNome;
+          },
+          // O dado atribuido na method 'alterarNome' será passado como argumento aqui
+          set: function (novoNome) {
+            var nomes = novoNome.split(' ');
+            this.primeiroNome = nomes[0];
+            this.ultimoNome = nomes[nomes.length - 1];
+          }
+        }
+      },
+      methods: {
+        alterarNome: function (event) {
+          this.nomeCompleto = event.target.value;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

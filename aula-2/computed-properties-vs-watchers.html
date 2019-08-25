@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Computed Properties vs Watchers</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Watchers: são uma alternativa aos Computed Properties, os watchers observam alterações em proprieades e executam alguma lógica, ainda assim, sempre de prioridade ao uso das Computed Properties -->
+
+  <div id="app">
+    <p>Nome: {{ nomeCompleto }}</p>
+
+    <button @click="alterarNomes">Alterar nomes</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        primeiroNome: 'Jonatas',
+        ultimoNome: 'Antunes'
+      },
+      watch: {
+        // Aqui descrevemos quaais as propriedades o Vue vai monitorar se alteradas.
+        // primeiro argumento é o valor novo e o segundo é o valor antigo.
+        primeiroNome: function (novoPimeiroNome, antigoPrimeiroNome) {
+          this.nomeCompleto = novoPimeiroNome + ' ' + this.ultimoNome;
+        },
+        ultimoNome: function (novoUltimoNome, antigoUltimoNome) {
+          this.nomeCompleto = this.primeiroNome + ' ' + novoUltimoNome;
+        },
+      },
+      methods: {
+        alterarNomes: function (event) {
+          this.primeiroNome = 'Antunes';
+          this.ultimoNome = 'Jonatas';
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

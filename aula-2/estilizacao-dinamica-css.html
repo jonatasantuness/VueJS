@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Estilização dinâmica com CSS</title>
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    .caixa {
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+      margin-right: 10px;
+      cursor: pointer;
+      background: gray;
+    }
+    .coral {
+      background: lightcoral;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Em aplicações Web é essencial manipular classes, css e estilos inline dos elementos, uma das maneiras de manipular esses atributos é utilizando data-binding para fazer uma manipulação dinâmica. -->
+
+  <!-- Uma forma de fazer isso é criar um método que calcula a string final que possui as classes de estilo necessárias,só que essa abordagem é muita propensa a erros, O Vue possui aprimoramentos especiais quando fazemos data-binding nos atributos class e style -->
+
+  <div id="app">
+    <!-- O atributo de classe dinâmico aguarda um booleano para definir se a classe será inserida ou não -->
+    <!-- Se a classe tiver nome composto, por exemplo 'coral-red', será obrigatório uso de parênteses ou aspas simples na propriedade dentro de ':class' -->
+    <div
+      class="caixa"
+      :class="{ coral: aplicarClasse }"
+      @click="aplicarClasse = !aplicarClasse">
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        aplicarClasse: false
+      }
+    });
+  </script>
+
+</body>
+
+</html>
