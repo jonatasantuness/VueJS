@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Estilização dinâmica com classes CSS usando nomes</title>
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    .caixa {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+      background: gray;
+    }
+    .coral {
+      background: lightcoral;
+    }
+    .verde {
+      background: lightgreen;
+    }
+    .azul {
+      background: lightblue;
+    }
+    .circulo {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div
+      class="caixa"
+      :class="{ coral: aplicarClasse }"
+      @click="aplicarClasse = !aplicarClasse">
+    </div>
+
+    <!-- Para aplicarmos uma classe css por meio do seu nome de forma dinâmica, faremos um input com two way data binding e linkar com a div abaixo utilizando a propriedade 'nomeDaClasse' do 'data' -->
+    <div
+      class="caixa"
+      :class="nomeDaClasse">
+    </div>
+
+    <input v-model="nomeDaClasse" placeholder="Digite o nome da classe CSS (coral, verde, azul, circulo)" size="50">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        aplicarClasse: false,
+        nomeDaClasse: ''
+      }
+    });
+  </script>
+
+</body>
+
+</html>

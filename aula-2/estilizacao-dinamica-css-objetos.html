@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Estilização dinâmica com classes CSS usando objetos</title>
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    .caixa {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+      background: gray;
+    }
+    .coral {
+      background: lightcoral;
+    }
+    .verde {
+      background: lightgreen;
+    }
+    .azul {
+      background: lightblue;
+    }
+    .circulo {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div
+      class="caixa"
+      :class="{ coral: aplicarClasse }"
+      @click="aplicarClasse = !aplicarClasse">
+    </div>
+
+    <div
+      class="caixa"
+      :class="nomeDaClasse">
+    </div>
+
+    <!-- Em situações onde existem muitas classes para se trabalhar,
+    podemos armazenar as informações numa computed propertie -->
+    <div
+      class="caixa"
+      :class="classesCSS"
+      @click="aplicarClasse = !aplicarClasse">
+    </div>
+
+    <input v-model="nomeDaClasse" placeholder="Digite o nome da classe CSS (coral, verde, azul, circulo)" size="50">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        aplicarClasse: false,
+        nomeDaClasse: ''
+      },
+      computed: {
+        classesCSS: function () {
+          // Retornaremos as classes CSS que queremos aplicar
+          return {
+            azul: this.aplicarClasse, // será aplicada somente se aplicarClasse for true
+            circulo: this.aplicarClasse, // será aplicada somente se aplicarClasse for true
+            verde: !this.aplicarClasse // será aplicada somente se aplicarClasse for false
+          };
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

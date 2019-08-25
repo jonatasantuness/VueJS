@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Estilizando propriedades CSS dinâmicamente com style</title>
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    #app div {
+      display: inline-block;
+      margin-top: 10px;
+      background: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Utilizando o v-bind na div, podemos informar dentro de :style,
+    qual a propriedade desejamos mudar -->
+
+    <!-- É possível digitar a propriedade sem aspas/paretenteses utilizando camelCase,
+    exe: backgroundColor, pois internamente o Vue à transformará em kebab case. -->
+    <div 
+      style="width: 200px; height: 200px;"
+      :style="{
+        'background': cor,
+        'height': tamanho + 'px'
+      }">
+    </div>
+
+    <div 
+      :style="estilosCSS">
+    </div>
+
+    <br>
+
+    <!-- Faremos um input para mudar a cor dinâmicamente com two way data binding
+    agindo na propriedade style para a div acima -->
+    <input v-model="cor" placeholder="Digite um nome/hexa de cor válido" size="30">
+
+    <!-- Neste input faremos o two way data binding utilizando o
+    '.number' para indicar que o tamanho será um number -->
+    <input v-model.number="tamanho" placeholder="Tamanho em px">
+
+    <!-- O Vue adiciona automaticamente prefixos CSS, mas caso queira, tem como adicionar manualmente,
+    neste caso o Vue vai pegar os valores do Array e renderizar o ultimo que o navegador suportar -->
+    <div
+      style="width: 200px; height: 200px;"
+      :style="{
+        display: [
+          '-webkit-box',
+          '-ms-flexbox',
+          'flexbox'
+        ]
+      }">
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        cor: '',
+        tamanho: 200
+      },
+      computed: {
+        estilosCSS: function () {
+          return {
+            backgroundColor: this.cor,
+            height: this.tamanho + 'px',
+            width: '100px'
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
