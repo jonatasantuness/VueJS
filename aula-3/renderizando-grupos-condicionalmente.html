@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Renderizando grupos de elementos condicionalmente</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Quando queremos renderizar mais de um elemento condicionalmente,
+  não é necessário coloca-lo numa div, ao invés disso podemos usar um
+  elemento do Vue chamado 'Template' -->
+
+  <div id="app">
+    <ul>
+      <li>Corinthians</li>
+      <li>Palmeiras</li>
+      <li>Santos</li>
+      <li>São Paulo</li>
+      <!-- o template irá servir como um container, porém só é usado
+      internamente pelo Vue, e não será renderizado -->
+      <template v-if="rioDeJaneiro">
+        <li>Flamengo</li>
+        <li>Fluminense</li>
+        <li>Vasco</li>
+        <li>Botafogo</li>
+      </template>
+    </ul>
+
+    <button @click="rioDeJaneiro = !rioDeJaneiro">Exibir/Ocultar Times do Rio</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        rioDeJaneiro: false
+      }
+    });
+  </script>
+
+</body>
+
+</html>

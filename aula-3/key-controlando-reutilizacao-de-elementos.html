@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Controlando reutilização de elementos com key</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Ao renderizar, o Vue reaproveita os elementos que já existem, no exemplo abaixo caso você digite um valor mas decida clicar no botão para trocar o método de login, o valor do input não será apagado, pois o Vue só irá trocar o placeholder descrito na condição -->
+
+  <!-- Para mudarmos este comportamento, podemos inserir o atributo 'key' nos inputs para assim definirmos que eles são únicos e não é para o Vue reaproveita-los na renderização, apagando assim o valor digitado no input-->
+
+  <div id="app">
+    <button @click="login = !login">Toggle</button>
+
+    <template v-if="login">
+      <label>Login: </label>
+      <input placeholder="login" key="campo-login">
+    </template>
+
+    <template v-else>
+      <label>E-mail: </label>
+      <input placeholder="E-mail" key="campo-email">
+    </template>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        login: true
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Renderização condicional com v-if e v-else</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- v-if: recebe um valor booleano (ou uma expressão que retonar true/false),
+    neste caso o elemento não será apenas ocultado, e sim removido do DOM. -->
+    <p v-if="mostrar">Olá VueJS!</p>
+    
+    <!-- v-else: é sempre utilizando em conjunto com a diretiva v-if,
+    o elemento que possui v-else deve seguir imadiatamente outro elemento com v-if,
+    quando a condição v-if for falsa, o v-else entra em ação e renderiza o 'else' -->
+    <p v-else>Até logo VueJS!</p>
+
+    <button @click="mostrar = !mostrar">Alternar</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mostrar: true
+      }
+    });
+  </script>
+
+</body>
+
+</html>

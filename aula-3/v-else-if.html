@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Trabalhando com v-else-if</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p v-if="nota === 'A'">Parabéns, você tirou A!</p>
+    <p v-else-if="nota === 'B'">Você tirou B mas pode melhorar.</p>
+    <p v-else-if="nota === 'C'">Precisa melhorar, tirou C.</p>
+    <p v-else>Nota ainda não publicada.</p>
+    <input v-model="nota" placeholder="Nota">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nota: ''
+      }
+    });
+  </script>
+
+</body>
+
+</html>

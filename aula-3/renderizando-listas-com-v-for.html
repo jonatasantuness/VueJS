@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Renderizando listas com v-for</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>Produtos</h1>
+
+    <!-- For-in -->
+    <ul>
+      <!-- For-in no v-for, dentro do bloco v-for temos acesso as propriedades do escopo pai de seu template, ou seja, podemos utilizar o dado 'textoProduto também' -->
+      <li v-for="produto in produtos">
+        {{ textoProduto }} {{ produto }}
+      </li>
+    </ul>
+
+    <!-- For-of -->
+    <ul>
+      <li v-for="produto of produtos">
+        {{ textoProduto }} {{ produto }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        textoProduto: 'Produto: ',
+        produtos: [
+          'monitor',
+          'teclado',
+          'mouse'
+        ]
+      }
+    });
+  </script>
+
+</body>
+
+</html>

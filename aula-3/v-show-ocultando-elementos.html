@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ocultando elementos com v-show</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <button @click="mostrar = !mostrar">Toggle</button>
+
+    <!-- A diretiva 'v-show' se parece com a 'v-if', a diferença é que o 'v-show'
+    trabalha baseada na propriedade CSS display, ou seja, ela apenas oculta o elemento e não o remove. -->
+
+    <!-- Então o 'v-show' não pode trabalhar com elementos de template
+    e não podemos utiliza-lo 'v-else' -->
+    <p v-show="mostrar">Diretiva v-show "{{ mostrar }}"</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mostrar: true
+      }
+    });
+  </script>
+
+</body>
+
+</html>

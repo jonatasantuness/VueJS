@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Diferenças entre v-if e v-show</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- v-show: Ideal quando você precisa alterar a visiblidade
+  de um elemento frequentemente, quando o valor inicial da propriedade for false,
+  o v-show toma a iniciativa e altera a visibilade com display. -->
+
+  <!-- v-if: Ideal quando você precisa alterar a visibilidade
+  de um elemento com menos frequência durante a execução, se o valor inicial
+  for false, o v-if nem sequer renderiza o elemento. -->
+
+  <div id="app">
+    <button @click="mostrar = !mostrar">Toggle</button>
+
+    <p v-if="mostrar">Diretiva v-if "{{ mostrar }}": <span>{{ texto }}</span></p>
+
+    <!-- Mesmo que este elemento seja oculto pelo v-show, ele continuará no DOM
+    processando as alterações do 'texto' vindas do input -->
+    <p v-show="mostrar">Diretiva v-show "{{ mostrar }}": <span>{{ texto }}</span></p>
+
+    <input v-model="texto">
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        mostrar: true,
+        texto: 'Olá, VueJS!'
+      }
+    });
+  </script>
+
+</body>
+
+</html>

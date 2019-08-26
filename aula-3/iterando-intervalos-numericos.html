@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Iterando intervalos númericos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>Números</h1>
+
+    <ul>
+      <!-- Podemos iterar sobre números específicos ou vindos do data,
+      começando a partir de 1, o index permanece começando em 0 -->
+      <li v-for="(valor, index) in 30">
+        {{ index}} : {{ valor }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app'
+    });
+  </script>
+
+</body>
+
+</html>

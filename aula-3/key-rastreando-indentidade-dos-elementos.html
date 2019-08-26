@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rastreando identidade dos elementos no v-for com key</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- O Vue utiliza a estratégia de 'remendo local' na hora de reorganizar os elementos no DOM,
+    ou seja, ao invés de renderizar os elementos novamente, ele apenas troca o que é necessário,
+    se quisermos alterar este comportamento e adicionar uma indentidade única para cada elemento,
+    temos que utilizar o atributo key, isso inclusive é considerado uma boa prática.-->
+
+  <div id="app">
+    <h1>Produtos</h1>
+
+    <ul>
+      <li v-for="produto in produtos">
+        {{ produto.nome }}
+      </li>
+    </ul>
+
+    <!-- Vamos utilizar o v-bind para modificar o atributo key dinâmicamente,
+      de preferência, coloque sempre um identificado único para o elemento,
+      como neste caso, o seu id que vem do 'data' -->
+    <ul>
+      <li v-for="produto in produtos" :key="produto.id">
+        {{ produto.nome }}
+      </li>
+    </ul>
+
+    <button @click="produtos.reverse()">Inverter lista</button>
+    <button @click="addProduto">Add Produto</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        produtos: [
+          {id: 1, nome: 'Monitor'},
+          {id: 2, nome: 'Teclado'},
+          {id: 3, nome: 'Mouse'},
+          {id: 4, nome: 'Processador'}
+        ]
+      },
+      methods: {
+        addProduto: function () {
+          var id = this.produtos.length + 1;
+          this.produtos.push({
+            id: id,
+            nome: 'Produto ' + id
+          });
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

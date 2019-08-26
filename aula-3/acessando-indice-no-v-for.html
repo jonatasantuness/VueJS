@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Acessando o índice do item iterado no v-for</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>Produtos</h1>
+
+    <!-- For -->
+    <ul>
+      <li v-for="(produto, index) in produtos" :key="index">
+        {{ textoProduto }} nº {{ index }} : {{ produto }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        textoProduto: 'Produto',
+        produtos: [
+          'monitor',
+          'teclado',
+          'mouse'
+        ]
+      }
+    });
+  </script>
+
+</body>
+
+</html>
