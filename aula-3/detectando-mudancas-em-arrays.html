@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Detectando mudancas em arrays</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- O VueJS encapsula automaticamente os método que causam mutações em Arrays, ele
+  possui método 'próprios' para cada método nativo do Array como 'pop', 'push', 'shift', etc...
+  Os métodos de mutação não criam uma nova referência de memória,
+  eles mantêm a referência de memoria e trabalha com o array existente -->
+
+  <div id="app">
+    <h1>Produtos:</h1>
+
+    <ul>
+      <li v-for="produto in produtos" :key="produto.id">{{ produto.nome }}</li>
+    </ul>
+
+    <!-- Quando clicar aqui, o VueJS saberá manipular o array existente 'produtos'
+    para realizar a mutação com a mesma referência de memoria -->
+    <button @click="adicionarProduto">Adicionar produto</button>
+
+    <!-- Se fizermos uma função que cria um novo array, mesmo criando uma nova referência na memoria,
+    o Vue tenta aproveitar ao máximo os elementos já existentes, e só modifica o que é necessário -->
+    <button @click="produtos = produtos.slice(0, 4)">Substituir Array</button>
+    
+    <!-- A substituição de um item no array possui limitação e não funciona de forma reativa,
+    porém podemos utilizar métodos do javascript ou do VuejS para resolvermos essa situação,
+    neste exemplo, usaremos o Vue.set() -->
+    <button @click="substituirProduto">Substituir produto existente</button>
+
+    <!-- Existe ainda uma outra limitação para o 'length', o VueJS não irá detectar alteração
+    de length do Array de forma reativa, porém podemos resolver isso no exemplo abaixo com splice() -->
+    <button @click="cortarArray">Cortar Array</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        produtos: [
+          { id: 1, nome: 'Monitor' },
+          { id: 2, nome: 'Teclado' },
+          { id: 3, nome: 'Mouse' },
+          { id: 4, nome: 'Processador' }
+        ]
+      },
+      methods: {
+        adicionarProduto: function (event) {
+          var id = this.produtos.length + 1;
+          this.produtos.push({
+            id: id,
+            nome: 'Produto ' + id
+          });
+        },
+        substituirProduto: function (event) {
+          var tamanho = this.produtos.length;
+          var indice = Math.round(tamanho / 2);
+          var novoProduto = {
+            id: (tamanho + 1),
+            nome: 'Produto ' + (tamanho + 1)
+          };
+
+          console.log(tamanho, indice);
+
+          // this.produtos[indice] = novoProduto; // Não reativo
+
+          /* Para fazer a alteração do produto de forma retiva, podemos utilizar
+          o método estático 'set' por meio do VueJS:
+          Vue.set(propriedade que será alterada, indice do array, novo valor);
+          ou por método através da instância (neste caso adicionar '$'):
+          this.$set(this.produtos, indice, novoProduto); */
+          Vue.set(this.produtos, indice, novoProduto);
+        },
+        cortarArray: function (event) {
+          // this.produtos.length = 2; // não é reativo
+
+          /* Vamos cortar o array do indice 0 até o 2 (inclusive), graças aos métodos de
+          mutação do VueJS, é possível alterarmos o data de forma reativa. */
+          this.produtos.splice(2);
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

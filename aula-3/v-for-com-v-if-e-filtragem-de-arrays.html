@@ -12,14 +12,41 @@
 <body>
 
   <div id="app">
+    <h1>Tarefas:</h1>
 
+    <ul>
+      <!-- Quanto utilizamos as diretivas v-for e v-if no mesmo elemento,
+      a diretiva v-for recebe prioridade, ou seja, mesmo que a condição exiba
+      somente o que queremos, o v-for realizou a iteração sobre todos os items,
+      o que não é bom para performance.-->
+      <li v-for="tarefa in tarefas" :key="tarefa.id" v-if="!tarefa.completa">{{ tarefa.titulo }}</li>
+    </ul>
+
+    <h1>Tarefas a fazer:</h1>
+    <ul>
+      <!-- Uma boa maneira de melhorar a performance, é filtrar as tarefas
+      que queremos exibir na computed ao invés de usar o v-if -->
+      <li v-for="tarefa in tarefasIncompletas" :key="tarefa.id">{{ tarefa.titulo }}</li>
+    </ul>
   </div>
 
   <script>
     new Vue({
       el: '#app',
       data: {
-
+        tarefas: [
+          { id: 1, titulo: 'Aprender Javascript', completa: true },
+          { id: 2, titulo: 'Aprender VueJS', completa: false },
+          { id: 3, titulo: 'Aprender Vuex', completa: false },
+          { id: 4, titulo: 'Aprender VueRouter', completa: false }
+        ]
+      },
+      computed: {
+        tarefasIncompletas: function () {
+          return this.tarefas.filter(function (tarefa) {
+            return !tarefa.completa;
+          });
+        }
       }
     });
   </script>

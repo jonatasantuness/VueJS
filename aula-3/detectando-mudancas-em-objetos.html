@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Detectando mudancas em objetos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>Objetos: </p>
+
+    <ul>
+      <li v-for="(valor, chave) in produtos">{{ chave }}: {{ valor }}</li>
+    </ul>
+
+    <!-- Vamos inserir uma propriedade ao objeto em data, de forma reativa -->
+    <button @click='adicionarPropriedade'>Adicionar propriedade</button>
+
+    <!-- Vamos atribuir mais de uma propriedade ao objeto em data de forma reativa -->
+    <button @click='substituirObjeto'>Substituir objeto</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        produtos: {
+          id: 2,
+          nome: 'Teclado',
+          marca: 'Dell'
+        }
+      },
+      methods: {
+        /* O VueJS não permite adicionar propriedades ao nível da raiz da instância,
+        ou seja, não podemos adicionar, por exemplo uma propriedade 'usuario' ao objeto dessa forma:
+        'this.usuarios = { nome: 'jonatas'}', o correto seria cria-lo antes. */
+
+        /* Adicionar uma nova propriedade À um objeto já existente,
+        também não funcionará de forma reativa, como no exemplo abaixo:
+        this.produtos.preco = 100 */
+        adicionarPropriedade: function (event) {
+          /* Podemo usar o método estático 'set' para alterarmos
+          o objeto em data de forma reativa:
+          Vue.set(objeto, nome da chave, valor da chave) ou
+          this.$set(this.produtos, 'preco', 100); */
+          Vue.set(this.produtos, 'preco', 100);
+        },
+        substituirObjeto: function (event) {
+          /*  No javascript poderiamos atribuir novas propriedades no objeto
+          utilizando o Object.assign(target, source); porém no VueJS isso não é reativo
+
+          Object.assign(this.produtos, {
+            preco: 50,
+            cor: 'preto'
+          });
+
+          */
+
+          /* Para o VueJS detectar a alteração, podemos atribuir à propriedade 'produtos',
+          o retorno do Object.assign(), porém passando um objeto vazio na primeira posição
+          e o objeto existente na segunda */
+          this.produtos = Object.assign({}, this.produtos, {
+            preco: 50,
+            cor: 'preto'
+          });
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>
