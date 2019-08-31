@@ -48,3 +48,6 @@ Repositório para o curso 'Vue JS - Guia Completo (Vue CLI, Vue Router, Vuex e G
 - [v-for junto com v-if e filtragem de arrays](/aula-3/v-for-com-v-if-e-filtragem-de-arrays.html)
 - [Detectando mudancas em arrays](/aula-3/detectando-mudancas-em-arrays.html)
 - [Detectando mudancas em objetos](/aula-3/detectando-mudancas-em-objetos.html)
+
+### Seção 4: Por trás da instância Vue
+- [](/aula-4/)
