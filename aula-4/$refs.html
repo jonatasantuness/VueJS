@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Usando $refs</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+
+  <!-- Em algumas situção pode ser útil acessar elementos diretamente do DOM,
+  no javascript fazemos isso com 'document.querySelector(), getElementById()...',
+  porém o VueJS nos oferece uma forma mais simple de fazer isso caso necessário. -->
+
+  <div id="app">
+    <!-- $ref: é um atributo especial do Vue, no exemplo abaixo estamos
+    referenciando o elemento 'h2' do DOM para utilizamos ele. -->
+    <h2 ref="meuTitulo">{{ titulo }}</h2>
+
+    <button @click="alterarTitulo">Alterar Título</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        titulo: 'VueJS'
+      },
+      methods: {
+        alterarTitulo: function (event) {
+          // Podemos acessar os elementos referenciados com 'this.$refs'
+          /* Quando utilizamos referencias dessa forma, estamos manipulando diretamente o DOM, e não o 'DOM virtual' que o Vue cria, porém esse template que o VueJS cria, continua existindo, então não perdermos a interpolação de strings no 'h2' */
+          this.$refs.meuTitulo.innerText = "Titulo alterado usando $refs !"
+        }
+      }
+    });
+
+    /* Repare como no log da instância, podemos verificar
+    os elementos referenciados em '$ref' */
+    console.log(vm);
+  </script>
+
+</body>
+
+</html>

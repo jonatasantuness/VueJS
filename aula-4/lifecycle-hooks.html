@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lifecycle Hooks: Ciclo de Vida de uma Instância Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- Seção 4 Aula 65 -->
+
+  <!-- lifecycle hooks: também conhecidos como 'gatilhos', são métodos que podemos utilizar para executar alguma lógica em determinado ponto do ciclo de vida de uma instância. -->
+
+  <!-- Ciclo de Vida do Vue
+
+  New Vue(): inicia o ciclo de vida da instância.
+
+  beforeCreate(): Primeiro gatilho disponível após o nascimento da instância, logo após esse gatilho ser executado o Vue inicia os dados e os eventos que passamos pro objeto de congifurações da instância.
+
+  created(): Nesse ponto a instância já foi criada, após esse gatilho o Vue compila os templates (seja através da propriedade template, da propriedade 'el' ou do método mount()).
+
+  beforeMount(): Nesse ponto o Vue ainda não montou o código HTML no DOM final, o que ele vai fazer em seguida é substituir internamente a propriedade 'el' com o template compilado, então o Vue faz as ligações que nós temos por meio de interpolações de strings, data-bindins, eventos, e etec.., mas neste ponto somente internamente, por debaixo dos panos, dentro da instância Vue, ou seja, internamente ja temos tudo pronto para jogar no DOM real, mas ainda não colocamos.
+
+  mounted(): Neste ponto o Vue conecta a nossa instância ao DOM final, neste ponto já consegimos ver tudo o que colocamos no template aparecendo na tela. Neste momento temo acesso a mais um ciclo interno com mais 2 lifecycles hooks (update() e beforeUpdate()) que podemos utilizar várias vezes. Esses novos lifecycles hooks acontecem sempre que alguma mudança nos dados ou na instância Vue causarem alguma mudança na camada visual.
+
+  mounted() > beforeUpdate(): Executa alguma lógica antes da alteração ser colocada no DOM, logo após esse gatilho o Virtual DOM re-enderiza e corrige somente partes necessárias.
+
+  mounted() > update(): logo após a correção do DOM no beforeUpdate() temos acesso ao gatilho update() que é ponto onde a alteração foi montada novamente no DOM, esse ciclo interno dura enquanto a instância Vue existir.
+
+  beforeDestroy(): Em situações onde a instância precisa ser destruída, podemos ter acesso ao gatilho beforeDestroy,neste ponto a instância está prestes a ser destruida, após executar este gatilho, o Vue destroi os observadores, components filhos e event listeners e então a instância é destruída.
+
+  destroyed(): Após o beforeDestroy é possível ainda executar alguma outra lógica e após esse gatilho finalizamos então o ciclo de vida uma instância do Vue.
+  -->
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Montando Templates</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <!-- Em situações onde não sabemos onde iremos montar a instância Vue,
+  ou onde há uma necessaidade de fazer uma validação antes, podemos montar templates
+  com a propriedade 'temaplates' do próprio Vue -->
+
+  <div id="app">
+    <h2>{{ titulo }}</h2>
+  </div>
+
+  <!-- Div para uso de teste da proprieade 'template' -->
+  <div id="app2"></div>
+
+  <script>
+    var vm = new Vue({
+      data: {
+        titulo: 'Curso de VueJS'
+      }
+    });
+
+    // Vue.$mount(seletor css para conectar a instância Vue): Podemos utilizar este método para montar nossa intância do Vue em algum elemento no DOM, ao invés de usar o '$el'
+    setTimeout(function () {
+      // Vamos conectar a instância no DOM depois de 2 segundos
+      vm.$mount('#app');
+    }, 2000);
+
+    var vm2 = new Vue({
+      template: '<h2>Utilizando Template!</h2>'
+    });
+
+    // A div com id "app2" utilizada para conexão da instância, não aparece no DOM final
+    vm2.$mount('#app2');
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Como o Vue gerencia os dados e métodos</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>Instância Vue</h2>
+
+    <p>{{ titulo }}</p>
+
+    <!-- O objeto será exibido no formato "prop": "value" -->
+    <p>{{ usuarios }}</p>
+  </div>
+
+  <script>
+    /* Já sabemos ue o Vue faz um 'proxy' para que o this e própria variavel 'vm'
+    consiga acessar todas as suas propriedades e métodos, além disso, a instância
+    do Vue faz os getters/setters para as propriedades */
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        titulo: 'Curso de VueJS',
+        usuarios: {}
+      }
+    });
+
+    /* Observe no console que a propriedade 'titulo' que está no data possui um getter/setter
+    enquanto a propriedade 'novaPropriedade' que adicionamos por fora não tem, isso por que
+    o VueJS faz o proxy das propriedades durante a instanciação. */
+    vm.novaPropriedade = 'Nova Propriedade!';
+    console.log('vm: \n', vm);
+
+    /* Se quisermos adicionr novas propriedade na instância, a maneira correta é
+    atualizá-la fazendo um alteração em sua interface com o método Vue.set()
+    para que essa nova propriedade seja reativa. */
+    setTimeout(function () {
+      vm.$set(vm.usuarios, 'nome', 'Jonatas Antunes');
+      setTimeout(function () {
+        vm.$set(vm.usuarios, 'email', 'teste@teste.com');
+      }, 2000);
+    }, 2000);
+  </script>
+
+</body>
+
+</html>

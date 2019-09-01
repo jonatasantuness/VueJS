@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue é simplesmente Javascript</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>Instância Vue</h2>
+
+    <button @click="mostrar = !mostrar">Toggle</button>
+
+    <p v-if="mostrar">{{ titulo }}</p>
+  </div>
+
+  <script>
+    var data = {
+      titulo: 'Curso de VueJS',
+      mostrar: true
+    }
+
+    var vm = new Vue({
+      el: '#app',
+      data: data
+    });
+
+    console.log('instância\n', vm);
+
+    /* Quando utilizamos a propriedade '$el' do Vue por exemplo, estamos fazendo a mesma
+    coisa que um seletor getElementById do Javascript faz, as Propriedades do Vue começam com '$'. */
+    console.log(vm.$el === document.getElementById('app'));
+
+    // Comparando o objeto 'data' que definimos com o '$data' do Vue
+    console.log(vm.$data === data);
+
+    /* Como o $data está atrelado ao objeto 'data', podemos alterar a propriedade
+    'titulo' do $data por meio do objeto 'data' fora da instância */
+    setTimeout(function () {
+      data.titulo = 'Titulo alterado pelo setTimeOut';
+    }, 3000);
+  </script>
+
+</body>
+
+</html>

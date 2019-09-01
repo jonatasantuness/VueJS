@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lifecycle Hooks na prática</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>{{ titulo }}</h2>
+
+    <button @click="alterarTitulo">Alterar Título</button>
+    <button @click="destruirInstancia">Destruir instância</button>
+  </div>
+
+  <script>
+    /* A princípio conseguiremos ver no console, até o passo 4 que representa o mounted,
+    isso por que para ativarmos os gatilhos restantes precisamos modificar algo na nossa instância */
+    var vm = new Vue({
+      // el: '#app',
+      data: {
+        titulo: 'Curso de VueJS'
+      },
+      methods: {
+        /* Quando clicarmos no botão e modificarmos nossa instância, os gatilhos
+        'beforeUpdate' e 'updated' serão acionados */
+        alterarTitulo: function (event) {
+          this.titulo = 'Titulo alterado!';
+        },
+        destruirInstancia: function (event) {
+          /* $destroy: é um método da instância Vue que destroi a instância,
+          quando clicarmos no botão os gatilhos beforeDestroy e destroyeds serão acionados */
+          this.$destroy();
+        }
+      },
+      // Os gatilhos de lifecycle são chamados na raiz da instância
+      beforeCreate: function () {
+        console.log('01 - beforeCreate()');
+      },
+      created: function () {
+        console.log('02 - created()');
+      },
+      beforeMount: function () {
+        console.log('03 - beforeMount()');
+      },
+      mounted: function () {
+        console.log('04 - mounted()');
+      },
+      beforeUpdate: function () {
+        console.log('05 - beforeUpdate()');
+      },
+      updated: function () {
+        console.log('06 - updated()');
+      },
+      beforeDestroy: function () {
+        console.log('07 - beforeDestroy()');
+      },
+      destroyed: function () {
+        console.log('08 - destroyed()');
+      }
+    });
+
+    /* Criar a instância não significa que você já tenha acesso aos elementos que estão no DOM,
+    só terá acesso depois que a instância for montada, no exemplo abaixo podemos comentar a
+    propriedade 'el' para montar a instância depois de 3 segundos, repare no console que os
+    gatilhos beforeMount() e mounted() só aparecerão depois do setTimeOut */
+    setTimeout(() => {
+      vm.$mount('#app');
+    }, 3000);
+  </script>
+</body>
+
+</html>

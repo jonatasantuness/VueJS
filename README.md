@@ -50,4 +50,15 @@ Repositório para o curso 'Vue JS - Guia Completo (Vue CLI, Vue Router, Vuex e G
 - [Detectando mudancas em objetos](/aula-3/detectando-mudancas-em-objetos.html)
 
 ### Seção 4: Por trás da instância Vue
-- [](/aula-4/)
+- [Conceitos básicos sobre a instância Vue](/aula-4/conceitos-basicos-instancia-vue.html)
+- [Trabalhando com múltiplas instâncias](/aula-4/multiplas-instancias.html)
+- [Acessando propriedades de outras instâncias](/aula-4/acessando-props-de-outras-instancias.html)
+- [Como o Vue gerencia os dados e métodos](/aula-4/gerenciamento-de-dados-e-metodos.html)
+- [Vue é simplesmente Javascript](/aula-4/vue-e-simplesmente-javascript.html)
+- [Usando $refs](/aula-4/$refs.html)
+- [Montando Templates](/aula-4/montando-templates.html)
+- [Usando Componentes](/aula-4/usando-components.html)
+- [Limitações em templates](/aula-4/limitacoes-em-templates.html)
+- [VueJS e Virtual DOM](/aula-4/vuejs-e-virtual-dom.html)
+- [Lifecycle Hooks: Ciclo de Vida de uma Instância Vue](/aula-4/lifecycle-hooks.html)
+- [Lifecycle Hooks na prática](/aula-4/lifecycle-hooks-na-pratica.html)

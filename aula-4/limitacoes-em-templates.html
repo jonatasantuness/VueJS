@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Limitações em templates</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app1">
+    <h2>Instância 01</h2>
+    <meu-component></meu-component>
+  </div>
+
+  <div id="app2"></div>
+
+  <script>
+    Vue.component('meu-component', {
+      template: '<h3>Meu component VueJS</h3>'
+    });
+
+    var vm1 = new Vue({
+      el: '#app1'
+    });
+
+    /* No exemplo abaixo a div com id 'app2' foi substituida pelo template da instância
+    'vm2', trabalhar dessa forma trás algumas limitações, como por exemplo, não temos
+    syntax highlight no template, é díficl usar multi-line. */
+
+    /* O VueJS possui 2 versões, uma completa (que é a que estamos usando) que inclui
+    compilador e a runtime (motor de tempo de execução), o compilador é responsável por
+    pegar o HTML dos templates e compilar com funções de renderização Javascript, ou seja,
+    graças a ela que podemos utilizar a propriedade template. */
+
+    /* A segunda versão (runtime), trabalha somente com funções de renderização, ou seja,
+    ela precisa ter todo HTML compilado para uma versão 'Javascipt', para que ela trabalhe
+    em tempo de execução. O VueJS possui ferramentas para fazer isso como o Vue CLI, por exemplo,
+    por questão de performance, sempre que possível utilize apenas a versão runtime.
+    Para utilizar essa versão precisamos passar por um processo de 'build' onde é feito a
+    pré-compilação de todos os nossos templates e entregamos para aplicação final os templates
+    já transformados em código Javascript. */
+
+    // Referência de distribuições VueJS: https://br.vuejs.org/v2/guide/installation.html#Explicacao-das-Distribuicoes
+
+    var vm2 = new Vue({
+      el: '#app2',
+      template: '<div><h2>Instância 02</h2><meu-component></meu-component></div>'
+    });
+  </script>
+
+</body>
+
+</html>
