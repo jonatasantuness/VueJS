@@ -62,3 +62,5 @@ Repositório para o curso 'Vue JS - Guia Completo (Vue CLI, Vue Router, Vuex e G
 - [VueJS e Virtual DOM](/aula-4/vuejs-e-virtual-dom.html)
 - [Lifecycle Hooks: Ciclo de Vida de uma Instância Vue](/aula-4/lifecycle-hooks.html)
 - [Lifecycle Hooks na prática](/aula-4/lifecycle-hooks-na-pratica.html)
+
+### Seção 5: Trabalhando com Vue CLI
