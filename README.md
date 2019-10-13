@@ -64,3 +64,13 @@ Repositório para o curso 'Vue JS - Guia Completo (Vue CLI, Vue Router, Vuex e G
 - [Lifecycle Hooks na prática](/aula-4/lifecycle-hooks-na-pratica.html)
 
 ### Seção 5: Trabalhando com Vue CLI
+- [Trabalhando com Vue CLI](/aula-5/trabalhando-com-vue-cli.md)
+- [Plugins](/aula-5/plugins.md)
+- [Pré Processadores CSS](/aula-5/pre-processadores-css.md)
+- [Variáveis de Ambiente e Modos](/aula-5/variaveis-de-ambientes-e-modos.md)
+- [Build de Produção](/aula-5/build-de-producao.md)
+- [ESLint](/aula-5/ESLint.md)
+- [Prototipagem Instantânea (Instant Prototyping)](/aula-5/prototipagem-instantanea.md)
+- [Customizando o Webpack](/aula-5/customizando-webpack.md)
+- [vue init (VueCLI 2)](/aula-5/vue-init-vuecli2.md)
+- [Build Targets](/aula-5/build-targets.md)
